@@ -1,5 +1,40 @@
 [
   {
+    "objectID": "practicas/abundancia_poblacional.html",
+    "href": "practicas/abundancia_poblacional.html",
+    "title": "Abundancia poblacional",
+    "section": "",
+    "text": "Se realizaron muestreos aleatorios en una parcela de 20*40 cm ubicada en la Ciudad Universitaria de la UNMSM Se presenta la base de datos obtenida en el muestro\n\n\nEn ecología, la curva de performance respecto a la suficiencia de muestreo se refiere a la relación entre el esfuerzo de muestreo (como la cantidad de muestras recolectadas o el tiempo invertido en el muestreo) y la precisión o completitud de los datos obtenidos para describir una comunidad o un proceso ecológico.\nEntonces, a lo largo del curso aprenderemos diferentes metodos de evaluacion de las poblaciones y comunidades vegetales, donde nuestros resultados dependeran del esfuerzo de muestreo.\nA continuación, realizaremos un ejemplo de como realizar una curva de performance, seguiremos los siguientes pasos:\n\nImportar un set de datos\nCalcular la densidad acumulativa\nDefinir parametros graficos\nAleatorizar las parcelas y calcular la densidad acumulativa por iteración\nAnalisis visual\n\n\n#Paso1\nlibrary(\"readxl\")\ndensidad_parcelas &lt;- read_excel('data/taraxacum-1m.xlsx', sheet = \"Hoja2\", col_types = c(\"numeric\",\"numeric\"))\n\n\n#Paso2\ndensidad_parcelas$Densidad_acum0 &lt;- cumsum(densidad_parcelas$Individuos) / seq_along(densidad_parcelas$Individuos)\n\nprint(densidad_parcelas$Densidad_acum0)\n\n [1] 11.000000  8.000000  8.666667  7.250000  6.000000  5.500000  5.142857\n [8]  4.625000  4.111111  5.300000  5.000000  4.583333\n\n\n\n#Paso3\ngenerar_grafico &lt;- function(datos, i) {\n  # Código para generar el gráfico\n  plot(datos, type = \"l\", main = paste(\"Gráfico\", i), xlab = \"X\", ylab = \"Y\")\n}\n\npar(mfrow=c(1,1))\n# Crear el primer gráfico\ngenerar_grafico(densidad_parcelas$Densidad_acum0, 1)\n\n\n\n\n\n\n\n\n\n#Paso4 y 5\nfor(i in 1:50) {\n  aleatorio &lt;- sample(densidad_parcelas$Individuos)\n  densidad_parcelas[[paste0(\"Densidad_acum\", i)]] &lt;- cumsum(aleatorio) / seq_along(densidad_parcelas$Individuos)\n  \n  # Crear los gráficos\n  generar_grafico(densidad_parcelas[[paste0(\"Densidad_acum\", i)]], i+1)\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#Bonus\n# Crear un gráfico en blanco\nplot(NULL, xlim=c(1, nrow(densidad_parcelas)), ylim=c(min(densidad_parcelas[grep(\"Densidad_acum\", names(densidad_parcelas))]), \n     max(densidad_parcelas[grep(\"Densidad_acum\", names(densidad_parcelas))])), \n     xlab=\"Número de observaciones\", ylab=\"Densidad acumulada\", \n     main=\"Resumen de Densidad Acumulada (50 Curvas)\")\n\n# Superponer las 14 curvas\nfor(i in 1:50) {\n  lines(densidad_parcelas[[paste0(\"Densidad_acum\", i)]], col=rainbow(50)[i])\n}\n\n# Añadir leyenda\nlegend(\"topright\", legend=paste0(\"Curva \", 1:50), col=rainbow(50), lty=1, cex=0.2)\n\n\n\n\n\n\n\n\n\n\nResumen de 50 curvas"
+  },
+  {
+    "objectID": "practicas/abundancia_poblacional.html#práctica-1-curva-de-performance",
+    "href": "practicas/abundancia_poblacional.html#práctica-1-curva-de-performance",
+    "title": "Abundancia poblacional",
+    "section": "",
+    "text": "En ecología, la curva de performance respecto a la suficiencia de muestreo se refiere a la relación entre el esfuerzo de muestreo (como la cantidad de muestras recolectadas o el tiempo invertido en el muestreo) y la precisión o completitud de los datos obtenidos para describir una comunidad o un proceso ecológico.\nEntonces, a lo largo del curso aprenderemos diferentes metodos de evaluacion de las poblaciones y comunidades vegetales, donde nuestros resultados dependeran del esfuerzo de muestreo.\nA continuación, realizaremos un ejemplo de como realizar una curva de performance, seguiremos los siguientes pasos:\n\nImportar un set de datos\nCalcular la densidad acumulativa\nDefinir parametros graficos\nAleatorizar las parcelas y calcular la densidad acumulativa por iteración\nAnalisis visual\n\n\n#Paso1\nlibrary(\"readxl\")\ndensidad_parcelas &lt;- read_excel('data/taraxacum-1m.xlsx', sheet = \"Hoja2\", col_types = c(\"numeric\",\"numeric\"))\n\n\n#Paso2\ndensidad_parcelas$Densidad_acum0 &lt;- cumsum(densidad_parcelas$Individuos) / seq_along(densidad_parcelas$Individuos)\n\nprint(densidad_parcelas$Densidad_acum0)\n\n [1] 11.000000  8.000000  8.666667  7.250000  6.000000  5.500000  5.142857\n [8]  4.625000  4.111111  5.300000  5.000000  4.583333\n\n\n\n#Paso3\ngenerar_grafico &lt;- function(datos, i) {\n  # Código para generar el gráfico\n  plot(datos, type = \"l\", main = paste(\"Gráfico\", i), xlab = \"X\", ylab = \"Y\")\n}\n\npar(mfrow=c(1,1))\n# Crear el primer gráfico\ngenerar_grafico(densidad_parcelas$Densidad_acum0, 1)\n\n\n\n\n\n\n\n\n\n#Paso4 y 5\nfor(i in 1:50) {\n  aleatorio &lt;- sample(densidad_parcelas$Individuos)\n  densidad_parcelas[[paste0(\"Densidad_acum\", i)]] &lt;- cumsum(aleatorio) / seq_along(densidad_parcelas$Individuos)\n  \n  # Crear los gráficos\n  generar_grafico(densidad_parcelas[[paste0(\"Densidad_acum\", i)]], i+1)\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#Bonus\n# Crear un gráfico en blanco\nplot(NULL, xlim=c(1, nrow(densidad_parcelas)), ylim=c(min(densidad_parcelas[grep(\"Densidad_acum\", names(densidad_parcelas))]), \n     max(densidad_parcelas[grep(\"Densidad_acum\", names(densidad_parcelas))])), \n     xlab=\"Número de observaciones\", ylab=\"Densidad acumulada\", \n     main=\"Resumen de Densidad Acumulada (50 Curvas)\")\n\n# Superponer las 14 curvas\nfor(i in 1:50) {\n  lines(densidad_parcelas[[paste0(\"Densidad_acum\", i)]], col=rainbow(50)[i])\n}\n\n# Añadir leyenda\nlegend(\"topright\", legend=paste0(\"Curva \", 1:50), col=rainbow(50), lty=1, cex=0.2)\n\n\n\n\n\n\n\n\n\n\nResumen de 50 curvas"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Christian Cerazo",
+    "section": "",
+    "text": "I am Christian Cerazo, a specialist in the utilization and valorization of solid resources, with experience in hydroponic cultivation systems and the phytochemical analysis of plant species. My background also includes the study of plant histology and histochemistry, which allows me to understand plants from their microscopic structures to their interactions with the environment. My goal is to generate knowledge and sustainable solutions that integrate science, technology, and the responsible management of natural resources."
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "Christian Cerazo",
+    "section": "Education",
+    "text": "Education\nNational University of San Marcos (UNMSM) | Lima, Peru B.Sc. in Biological Sciences (in progress) | March 2021 – Present\nPolytechnic University of Valencia | Valencia, Spain Certification in Microsoft Excel | 2022\nNational Institute of Agrarian Innovation (INIA) | Peru Certification in Hydroponics and in Design & Analysis of Experiments | 2023 – 2024"
+  },
+  {
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "Christian Cerazo",
+    "section": "Experience",
+    "text": "Experience\nLaboratory of Pharmacognosy and Plant Anatomy, Faculty of Biological Sciences, UNMSM | Research Member | 2021 – Present\nACLIREN Research Group | Member | 2023 – Present"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Ecologia de poblaciones vegetales 2025-II",
@@ -19,12 +54,5 @@
     "title": "Ecologia de poblaciones vegetales 2025-II",
     "section": "Holaa",
     "text": "Holaa\n\nHolaaa\n\nHolaaaa\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2\n\n\n\n\n\n Back to top"
   }
 ]
