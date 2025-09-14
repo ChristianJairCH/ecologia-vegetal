@@ -19,7 +19,7 @@ website:
     foreground: success
     tools:
       - icon: github
-        href: https://github.com/ChristianJairCH/FisioVegetal.git
+        href: https://github.com/ChristianJairCH/ecologia-vegetal.git
         aria-label: "Enlace a repositorio GitHub"
         target: _blank
         rel: noopener
