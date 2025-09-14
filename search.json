@@ -2,15 +2,29 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Ecología vegetal 2025-II",
+    "title": "Ecologia de poblaciones vegetales 2025-II",
     "section": "",
-    "text": "This is a Quarto website. Hola como estan :)\n\nestoy bien\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "La ecología estudia las interrelaciones de especies y su medio ambiente, necesario para comprender…\n\n\nThis is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "index.html#primeros-pasos",
+    "href": "index.html#primeros-pasos",
+    "title": "Ecologia de poblaciones vegetales 2025-II",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "index.html#holaa",
+    "href": "index.html#holaa",
+    "title": "Ecologia de poblaciones vegetales 2025-II",
+    "section": "Holaa",
+    "text": "Holaa\n\nHolaaa\n\nHolaaaa\n\n1 + 1\n\n[1] 2"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "About this site\n\n1 + 1\n\n[1] 2\n\n\n\n\n\n Back to top"
   }
 ]
