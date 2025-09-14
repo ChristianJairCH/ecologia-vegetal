@@ -106,6 +106,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -153,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://github.com/ChristianJairCH/FisioVegetal.git" rel="noopener" title="" class="quarto-navigation-tool px-1" aria-label="Enlace a repositorio GitHub" target="_blank"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/ChristianJairCH/ecologia-vegetal.git" rel="noopener" title="" class="quarto-navigation-tool px-1" aria-label="Enlace a repositorio GitHub" target="_blank"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -176,7 +205,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#práctica-1-curva-de-performance" id="toc-práctica-1-curva-de-performance" class="nav-link" data-scroll-target="#práctica-1-curva-de-performance">Práctica 1: CURVA DE PERFORMANCE</a>
   <ul class="collapse">
-  <li><a href="#oxalis-1m" id="toc-oxalis-1m" class="nav-link" data-scroll-target="#oxalis-1m">Oxalis 1m</a></li>
+  <li><a href="#primer-gráfico" id="toc-primer-gráfico" class="nav-link" data-scroll-target="#primer-gráfico">Primer gráfico</a></li>
+  <li><a href="#gráficos-adicionales" id="toc-gráficos-adicionales" class="nav-link" data-scroll-target="#gráficos-adicionales">Gráficos adicionales</a></li>
+  <li><a href="#superposición-de-gráficos" id="toc-superposición-de-gráficos" class="nav-link" data-scroll-target="#superposición-de-gráficos">Superposición de gráficos</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -218,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introducción" class="level1">
 <h1>Introducción</h1>
-<p>Se realizaron muestreos aleatorios en una parcela de 20*40 cm ubicada en la Ciudad Universitaria de la UNMSM Se presenta la base de datos obtenida en el muestro</p>
+<p>Se realizaron muestreos aleatorios en una parcela de <span class="math display">\[20*40 cm\]</span> ubicada en la Ciudad Universitaria de la UNMSM Se presenta la base de datos obtenida en el muestro:</p>
 <section id="práctica-1-curva-de-performance" class="level2">
 <h2 class="anchored" data-anchor-id="práctica-1-curva-de-performance">Práctica 1: CURVA DE PERFORMANCE</h2>
 <p>En ecología, la <strong>curva de performance respecto a la suficiencia de muestreo</strong> se refiere a la relación entre el esfuerzo de muestreo (como la cantidad de muestras recolectadas o el tiempo invertido en el muestreo) y la precisión o completitud de los datos obtenidos para describir una comunidad o un proceso ecológico.</p>
@@ -246,6 +277,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  [8]  4.625000  4.111111  5.300000  5.000000  4.583333</code></pre>
 </div>
 </div>
+<section id="primer-gráfico" class="level3">
+<h3 class="anchored" data-anchor-id="primer-gráfico">Primer gráfico</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Paso3</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>generar_grafico <span class="ot">&lt;-</span> <span class="cf">function</span>(datos, i) {</span>
@@ -259,11 +292,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/primer gráfico-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+</section>
+<section id="gráficos-adicionales" class="level3">
+<h3 class="anchored" data-anchor-id="gráficos-adicionales">Gráficos adicionales</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Paso4 y 5</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>) {</span>
@@ -276,354 +312,357 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-3.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-4.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-4.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-5.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-5.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-6.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-6.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-7.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-7.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-8.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-8.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-9.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-9.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-10.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-10.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-11.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-11.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-12.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-12.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-13.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-13.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-14.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-14.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-15.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-15.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-16.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-16.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-17.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-17.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-18.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-18.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-19.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-19.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-20.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-20.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-21.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-21.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-22.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-22.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-23.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-23.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-24.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-24.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-25.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-25.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-26.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-26.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-27.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-27.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-28.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-28.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-29.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-29.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-30.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-30.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-31.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-31.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-32.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-32.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-33.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-33.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-34.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-34.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-35.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-35.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-36.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-36.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-37.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-37.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-38.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-38.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-39.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-39.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-40.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-40.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-41.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-41.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-42.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-42.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-43.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-43.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-44.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-44.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-45.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-45.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-46.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-46.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-47.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-47.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-48.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-48.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-49.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-49.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-4-50.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/gráficos adicionales-50.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+</section>
+<section id="superposición-de-gráficos" class="level3">
+<h3 class="anchored" data-anchor-id="superposición-de-gráficos">Superposición de gráficos</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Bonus</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un gráfico en blanco</span></span>
@@ -632,7 +671,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Número de observaciones"</span>, <span class="at">ylab=</span><span class="st">"Densidad acumulada"</span>, </span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Resumen de Densidad Acumulada (50 Curvas)"</span>)</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Superponer las 14 curvas</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Superponer las 50 curvas</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>) {</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(densidad_parcelas[[<span class="fu">paste0</span>(<span class="st">"Densidad_acum"</span>, i)]], <span class="at">col=</span><span class="fu">rainbow</span>(<span class="dv">50</span>)[i])</span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>}</span>
@@ -642,17 +681,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="abundancia_poblacional_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="abundancia_poblacional_files/figure-html/superposición-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<section id="oxalis-1m" class="level3">
-<h3 class="anchored" data-anchor-id="oxalis-1m">Oxalis 1m</h3>
+<section id="oxalis-1m" class="level4">
+<h4 class="anchored" data-anchor-id="oxalis-1m">Oxalis 1m</h4>
 <p>Resumen de 50 curvas</p>
 <p><img src="imagenes/oxalis_1m.png" class="img-fluid"></p>
 
 
+</section>
 </section>
 </section>
 </section>
