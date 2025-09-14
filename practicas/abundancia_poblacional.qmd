@@ -36,8 +36,6 @@ A continuación, realizaremos un ejemplo de como realizar una curva de performan
 #Paso1
 library("readxl")
 densidad_parcelas <- read_excel('data/taraxacum-1m.xlsx', sheet = "Hoja2", col_types = c("numeric","numeric"))
-
-View(densidad_parcelas)
 ```
 
 ```{r}
