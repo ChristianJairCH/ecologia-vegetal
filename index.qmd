@@ -5,6 +5,8 @@ title: "Ecología vegetal 2025-II"
 This is a Quarto website.
 Hola como estan :)
 
+# estoy bien
+
 To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 
 ```{r}
