@@ -2,13 +2,44 @@ project:
   type: website
 
 website:
-  title: "ecologia-vegetal"
+  title: "Ecología vegetal"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - text: More
+        menu: 
+          - practicas/abundancia_poblacional.qmd
+          - href: about.qmd
+            text: About me
 
+    logo: logo.png
+    logo-alt: plant
+    background: dark
+    foreground: success
+    tools:
+      - icon: github
+        href: https://github.com/ChristianJairCH/FisioVegetal.git
+        aria-label: "Enlace a repositorio GitHub"
+        target: _blank
+        rel: noopener
+        
+  back-to-top-navigation: true
+  
+  reader-mode: true
+  
+  page-footer:
+    left: "Copyright 2025, Christian Cerazo"
+    right:
+      - icon: github
+        href: https://github.com/ChristianJairCH
+        aria-label: "Enlace a perfil GitHub"
+        target: _blank
+        rel: noopener
+
+    border: false
+    background: black
+  
 format:
   html:
     theme:
@@ -16,6 +47,5 @@ format:
       - brand
     css: styles.css
     toc: true
-
 
 

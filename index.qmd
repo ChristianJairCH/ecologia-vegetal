@@ -1,14 +1,25 @@
 ---
-title: "Ecología vegetal 2025-II"
+title: "Ecologia de poblaciones vegetales 2025-II"
+subtitle: "Universidad Nacional Mayor de San Marcos"
+subsubtitle: "Facultad de Ciencias Biológicas"
+Author: "Christian Jair Cerazo Huapaya"
 ---
 
-This is a Quarto website.
-Hola como estan :)
+# Descripción
+La ecología estudia las interrelaciones de especies y su medio ambiente, necesario para comprender...
 
-# estoy bien
+## Primeros pasos
+This is a Quarto website.
 
 To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 
+# Hola
+
+## Holaa
+
+### Holaaa
+
+#### Holaaaa
 ```{r}
 1 + 1
 ```
