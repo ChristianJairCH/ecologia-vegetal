@@ -1,9 +1,29 @@
 ---
-title: "About"
+title: "Christian Cerazo"
+about:
+  template: solana
+  image: profile.jpg
+  links:
+    - icon: orcid
+      text: ORCID
+      href: https://orcid.org/0009-0008-5472-0915
+    - icon: github
+      text: GitHub
+      href: https://github.com/ChristianJairCH
 ---
 
-About this site
+I am Christian Cerazo, a specialist in the utilization and valorization of solid resources, with experience in hydroponic cultivation systems and the phytochemical analysis of plant species. My background also includes the study of plant histology and histochemistry, which allows me to understand plants from their microscopic structures to their interactions with the environment. My goal is to generate knowledge and sustainable solutions that integrate science, technology, and the responsible management of natural resources.
 
-```{r}
-1 + 1
-```
+## Education
+
+National University of San Marcos (UNMSM) | Lima, Peru B.Sc. in Biological Sciences (in progress) | March 2021 – Present
+
+Polytechnic University of Valencia | Valencia, Spain Certification in Microsoft Excel | 2022
+
+National Institute of Agrarian Innovation (INIA) | Peru Certification in Hydroponics and in Design & Analysis of Experiments | 2023 – 2024
+
+## Experience
+
+Laboratory of Pharmacognosy and Plant Anatomy, Faculty of Biological Sciences, UNMSM | Research Member | 2021 – Present
+
+ACLIREN Research Group | Member | 2023 – Present

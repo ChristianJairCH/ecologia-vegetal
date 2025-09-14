@@ -1,0 +1,96 @@
+---
+title: "Abundancia poblacional"
+format: html
+author:
+  - name: Christian Cerazo Huapaya
+    orcid: 0009-0008-5472-0915
+    corresponding: true
+    email: chrisitancerazohuapaya@gmail.com
+    roles:
+      - Investigation
+      - Project administration
+      - Software
+      - Visualization
+date: 11/09/2025
+---
+
+# Introducción
+
+Se realizaron muestreos aleatorios en una parcela de 20\*40 cm ubicada en la Ciudad Universitaria de la UNMSM Se presenta la base de datos obtenida en el muestro
+
+## Práctica 1: CURVA DE PERFORMANCE
+
+En ecología, la **curva de performance respecto a la suficiencia de muestreo** se refiere a la relación entre el esfuerzo de muestreo (como la cantidad de muestras recolectadas o el tiempo invertido en el muestreo) y la precisión o completitud de los datos obtenidos para describir una comunidad o un proceso ecológico.
+
+Entonces, a lo largo del curso aprenderemos diferentes metodos de evaluacion de las poblaciones y comunidades vegetales, donde nuestros resultados dependeran del esfuerzo de muestreo.
+
+A continuación, realizaremos un ejemplo de como realizar una curva de performance, seguiremos los siguientes pasos:
+
+1.  Importar un set de datos
+2.  Calcular la densidad acumulativa
+3.  Definir parametros graficos
+4.  Aleatorizar las parcelas y calcular la densidad acumulativa por iteración
+5.  Analisis visual
+
+```{r}
+#Paso1
+library("readxl")
+densidad_parcelas <- read_excel("D:/chris/Documents/GitHub/ecologia_vegetal/data/conteo_taraxacum_1m.xlsx", sheet = "Hoja2", col_types = c("numeric","numeric"))
+
+View(densidad_parcelas)
+```
+
+```{r}
+#Paso2
+densidad_parcelas$Densidad_acum0 <- cumsum(densidad_parcelas$Individuos) / seq_along(densidad_parcelas$Individuos)
+
+print(densidad_parcelas$Densidad_acum0)
+```
+
+```{r}
+#Paso3
+generar_grafico <- function(datos, i) {
+  # Código para generar el gráfico
+  plot(datos, type = "l", main = paste("Gráfico", i), xlab = "X", ylab = "Y")
+}
+
+par(mfrow=c(1,1))
+# Crear el primer gráfico
+generar_grafico(densidad_parcelas$Densidad_acum0, 1)
+```
+
+```{r}
+#Paso4 y 5
+for(i in 1:50) {
+  aleatorio <- sample(densidad_parcelas$Individuos)
+  densidad_parcelas[[paste0("Densidad_acum", i)]] <- cumsum(aleatorio) / seq_along(densidad_parcelas$Individuos)
+  
+  # Crear los gráficos
+  generar_grafico(densidad_parcelas[[paste0("Densidad_acum", i)]], i+1)
+}
+  
+```
+
+```{r}
+#Bonus
+# Crear un gráfico en blanco
+plot(NULL, xlim=c(1, nrow(densidad_parcelas)), ylim=c(min(densidad_parcelas[grep("Densidad_acum", names(densidad_parcelas))]), 
+     max(densidad_parcelas[grep("Densidad_acum", names(densidad_parcelas))])), 
+     xlab="Número de observaciones", ylab="Densidad acumulada", 
+     main="Resumen de Densidad Acumulada (50 Curvas)")
+
+# Superponer las 14 curvas
+for(i in 1:50) {
+  lines(densidad_parcelas[[paste0("Densidad_acum", i)]], col=rainbow(50)[i])
+}
+
+# Añadir leyenda
+legend("topright", legend=paste0("Curva ", 1:50), col=rainbow(50), lty=1, cex=0.2)
+
+```
+
+### Oxalis 1m
+
+Resumen de 50 curvas
+
+![](imagenes/oxalis_1m.png)
