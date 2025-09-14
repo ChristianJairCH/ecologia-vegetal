@@ -16,7 +16,7 @@ date: 11/09/2025
 
 # Introducción
 
-Se realizaron muestreos aleatorios en una parcela de 20\*40 cm ubicada en la Ciudad Universitaria de la UNMSM Se presenta la base de datos obtenida en el muestro
+Se realizaron muestreos aleatorios en una parcela de $$20*40 cm$$ ubicada en la Ciudad Universitaria de la UNMSM Se presenta la base de datos obtenida en el muestro:
 
 ## Práctica 1: CURVA DE PERFORMANCE
 
@@ -32,20 +32,20 @@ A continuación, realizaremos un ejemplo de como realizar una curva de performan
 4.  Aleatorizar las parcelas y calcular la densidad acumulativa por iteración
 5.  Analisis visual
 
-```{r}
+```{r importar data}
 #Paso1
 library("readxl")
 densidad_parcelas <- read_excel('data/taraxacum-1m.xlsx', sheet = "Hoja2", col_types = c("numeric","numeric"))
 ```
 
-```{r}
+```{r cálculo densidad}
 #Paso2
 densidad_parcelas$Densidad_acum0 <- cumsum(densidad_parcelas$Individuos) / seq_along(densidad_parcelas$Individuos)
 
 print(densidad_parcelas$Densidad_acum0)
 ```
-
-```{r}
+### Primer gráfico
+```{r primer gráfico}
 #Paso3
 generar_grafico <- function(datos, i) {
   # Código para generar el gráfico
@@ -57,7 +57,8 @@ par(mfrow=c(1,1))
 generar_grafico(densidad_parcelas$Densidad_acum0, 1)
 ```
 
-```{r}
+### Gráficos adicionales
+```{r gráficos adicionales}
 #Paso4 y 5
 for(i in 1:50) {
   aleatorio <- sample(densidad_parcelas$Individuos)
@@ -69,7 +70,8 @@ for(i in 1:50) {
   
 ```
 
-```{r}
+### Superposición de gráficos
+```{r superposición}
 #Bonus
 # Crear un gráfico en blanco
 plot(NULL, xlim=c(1, nrow(densidad_parcelas)), ylim=c(min(densidad_parcelas[grep("Densidad_acum", names(densidad_parcelas))]), 
@@ -77,7 +79,7 @@ plot(NULL, xlim=c(1, nrow(densidad_parcelas)), ylim=c(min(densidad_parcelas[grep
      xlab="Número de observaciones", ylab="Densidad acumulada", 
      main="Resumen de Densidad Acumulada (50 Curvas)")
 
-# Superponer las 14 curvas
+# Superponer las 50 curvas
 for(i in 1:50) {
   lines(densidad_parcelas[[paste0("Densidad_acum", i)]], col=rainbow(50)[i])
 }
@@ -87,7 +89,7 @@ legend("topright", legend=paste0("Curva ", 1:50), col=rainbow(50), lty=1, cex=0.
 
 ```
 
-### Oxalis 1m
+#### Oxalis 1m
 
 Resumen de 50 curvas
 
